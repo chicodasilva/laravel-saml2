@@ -62,11 +62,10 @@ class Saml2Auth
         if (strpos($config['sp']['x509cert'], 'file://')===0) {
             $config['sp']['x509cert'] = static::extractCertFromFile($config['sp']['x509cert']);
         }
-        /*
         if (strpos($config['idp']['x509cert'], 'file://')===0) {
             $config['idp']['x509cert'] = static::extractCertFromFile($config['idp']['x509cert']);
-        }*/
-        // ...
+        }
+        // Custom :: MultiCert feature...
         if (!empty($config['idp']['x509certMulti']['signing'])) {
           $config['idp']['x509certMulti']['signing'] = array_map(
             function ($val) {
